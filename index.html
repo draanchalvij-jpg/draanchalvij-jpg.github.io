@@ -18,6 +18,9 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Aanchal Vij","jobTitle":"Assistant Professor, Computer Science and Engineering","worksFor":{"@type":"CollegeOrUniversity","name":"IILM University"},"url":"https://aanchalvij.com","email":"aanchal.vij@iilm.edu","sameAs":["https://orcid.org/0000-0002-7940-0650","https://scholar.google.com/citations?user=YZU5OkcAAAAJ","https://researchid.co/aanchal_vij","https://www.linkedin.com/in/aanchal-vij-b98154b6/","https://www.scopus.com/authid/detail.uri?authorId=57221954706"],"knowsAbout":["Medical Image Processing","Lung Cancer Detection","Deep Learning","Healthcare AI"]}
 </script>
+<!-- Analytics (inactive). After creating a free GoatCounter site, replace YOURCODE and remove these comment markers:
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -70,6 +73,7 @@
 <section id="research" class="alt sec">
   <div class="wrap">
     <h2>Research</h2>
+    <p class="statement">My research asks how AI can support earlier, more reliable lung cancer detection from CT images in a way clinicians can trust. I combine local feature extraction, attention and global context modelling, and I focus on making models robust, interpretable and generalizable.</p>
     <div class="rows">
       <article>
         <h3>Hybrid deep learning for CT-based lung cancer detection</h3>
@@ -87,7 +91,17 @@
         <p class="meta">Paper: Interpretable CNN ensemble, IEEE 2026</p>
       </article>
     </div>
+    <h3>Hybrid CNN-Transformer pipeline</h3>
+    <ol class="flow">
+      <li><b>CT image</b>Chest CT slices, multi-class labels</li>
+      <li><b>Preprocessing</b>CLAHE, wavelet denoising, normalization, augmentation</li>
+      <li><b>EfficientNetV2-S</b>Local feature extraction</li>
+      <li><b>CBAM attention</b>Refines channel and spatial features</li>
+      <li><b>Transformer encoder</b>Global dependencies</li>
+      <li><b>Classifier</b>Multi-class prediction; SMOTE and focal loss for imbalance</li>
+    </ol>
     <p class="tags"><span>Medical image analysis</span><span>Computer vision</span><span>Attention mechanisms</span><span>Transformers</span><span>Feature selection</span><span>Healthcare AI</span></p>
+    <div class="collab"><b>Open to collaboration</b> Joint research in medical imaging and healthcare AI, student projects and reviewing invitations. <a href="#contact">Get in touch</a></div>
   </div>
 </section>
 
@@ -182,6 +196,22 @@
   </div>
 </section>
 
+<section id="beyond" class="wrap sec">
+  <h2>Beyond academics</h2>
+  <div class="two" style="margin-top:0">
+    <div>
+      <h3>Writing</h3>
+      <p>My poems appear in two international poetry anthologies: <i>The Elegance of Rhyming Poetry</i> and <i>For the Love of Poetry</i>.</p>
+      <h3>Community</h3>
+      <p>Social-service work with the Parijat Youth Organization, and felicitation by Lions Club Meerut/Bhawani for contribution as an educator.</p>
+    </div>
+    <div>
+      <h3>Stage and speech</h3>
+      <ul class="plain"><li>Best Actress, zonal level (2006) and state level (2007)</li><li>Awards in declamation and debate at school and college level</li><li>Ms. Farewell Award during postgraduate study</li></ul>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="alt sec">
   <div class="wrap narrow">
     <h2>Contact</h2>
@@ -197,6 +227,10 @@
 </main>
 
 <footer class="wrap">© <span id="year"></span> Aanchal Vij. Department of Computer Science and Engineering, IILM University.</footer>
+<div class="scroll" aria-label="Page scroll">
+  <button id="up" aria-label="Scroll to top" hidden>&#9650;</button>
+  <button id="down" aria-label="Scroll to bottom">&#9660;</button>
+</div>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
