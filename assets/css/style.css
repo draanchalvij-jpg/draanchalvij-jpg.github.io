@@ -106,3 +106,14 @@ footer{padding:30px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
  .flow{grid-template-columns:1fr;gap:20px}
  .flow li:not(:last-child)::after{content:"\2193";right:50%;top:auto;bottom:-17px;transform:translateX(50%)}
 }
+
+.slider{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin}
+.track figure{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}
+.track img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;display:block;background:var(--line)}
+.track figcaption{font-size:.9rem;color:var(--muted);padding-top:8px}
+.sbtns{display:flex;gap:10px;margin-top:14px}
+.sbtns button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--ink);font-size:1.1rem;cursor:pointer}
+.sbtns button:hover{background:var(--ink);color:var(--white)}
+@media(max-width:820px){.track figure{flex-basis:82%}}
+@media(prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
