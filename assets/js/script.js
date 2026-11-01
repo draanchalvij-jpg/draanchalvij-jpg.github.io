@@ -1,70 +1,119 @@
-// Publications: [year, title, venue, authors, doi, type (j=journal, c=conference), lung?]
-const V = "Aanchal Vij";
-const P = [
-[2026,"Hybrid CNN-Based Transformer Pipeline With Radiomic Fusion for Multi-Class Lung Cancer Detection","Journal of Computer Science, 22(6), 1785–1796",V+", Kuldeep Singh Kaswan, Anand Nayyar","10.3844/jcssp.2026.1785.1796","j",1],
-[2026,"Machine Learning Advancements for Lung Cancer Detection: An In-Depth Review and Future Prospects","Journal of Computer Science, 22(1), 260–272",V+", Kuldeep Singh Kaswan, Anand Nayyar","10.3844/jcssp.2026.260.272","j",1],
-[2026,"From Detection to Decision Support: A Hybrid CNN-Transformer Model for Early Lung Cancer Screening","IEEE IC2PCT 2026",V+", Kuldeep Singh Kaswan, Anand Nayyar","10.1109/IC2PCT68894.2026.11584483","c",1],
-[2026,"AI-Powered Resume and Job Description Matcher: A Semantic Similarity Approach Using SBERT and Contrastive Fine-Tuning","IEEE ICSFT 2026","Jitendra Singh, Mekhala, Kamini Tanwar, Ashish Kumar, "+V+", Ashish Jain","10.1109/ICSFT66733.2026.11507545","c",0],
-[2026,"Bridging Fiber Optic and Free-Space Optical Communication: A Comparative Study and Hybrid Framework Using Artificial Intelligence","IEEE I3CTCON 2026",V+", Priyanka Gaba, Sourav Vij","10.1109/I3CTCON68242.2026.11507287","c",0],
-[2026,"Insect and Pest Recognition: A Lightweight Adaptive Feature-Level Ensemble Learning Approach","IEEE GTSS 2026",V+" et al.","10.1109/GTSS68743.2026.11679638","c",0],
-[2026,"An Interpretable CNN Ensemble Framework for Multi-Class Lung Cancer Classification","IEEE GTSS 2026",V+" et al.","10.1109/GTSS68743.2026.11679541","c",1],
-[2026,"Benchmarking Pretrained Language Models as Pseudo-Label Annotators for Financial Sentiment Analysis","IEEE GTSS 2026",V+" et al.","10.1109/GTSS68743.2026.11679744","c",0],
-[2026,"DSMNet-V3: Lightweight Dual-Stream ROI-Focused MobileNetV3 Network for Driver Drowsiness Detection","IEEE GTSS 2026",V+" et al.","10.1109/GTSS68743.2026.11679671","c",0],
-[2025,"An Enhanced CT-Based Lung Cancer Classification Framework Using a Hybrid EfficientNetV2, CBAM, and Transformer Architecture","IEEE ACET 2025",V+", Kuldeep Singh Kaswan, Anand Nayyar","10.1109/ACET67282.2025.11430402","c",1],
-[2025,"Multilevel Optimization with Hybrid Stack Model for Lung Cancer Classification","J. Information Systems Engineering and Management, 10(28s), 993–1019",V+", Kuldeep Singh Kaswan, Anand Nayyar","10.52783/jisem.v10i28s.4762","j",1],
-[2025,"Machine Learning-Based Image Analysis for Cotton Crop Health: A Comparative Study","IEEE MRIE 2025","Ankit Yadav, Vinay Sharma, "+V+", Jitendra Singh, Amit Chaudhary","10.1109/MRIE66930.2025.11156686","c",0],
-[2025,"Multi-Modal Plagiarism Detection in the Era of AI: A Comprehensive Review and Novel Framework Proposal","IEEE ACET 2025","Anshu Kumar, Purushottam Choudhary, Anirban Dutta, "+V,"10.1109/ACET67282.2025.11430248","c",0],
-[2024,"Comparative Analysis of Web APIs: RESTful and GraphQL","Lecture Notes in Electrical Engineering, 1232, 159–169","Aparna Seth, Vinay Kumar, Vaibhav Kulshrestha, "+V,"10.1007/978-981-97-5231-7_14","c",0],
-[2023,"Prediction of Lung Cancer using Convolution Neural Networks","IEEE AISC 2023, 737–741",V+", Kuldeep Singh Kaswan","10.1109/AISC56616.2023.10085058","c",1],
-[2023,"Artificial Intelligence and Regulatory Framework for Sustainable Plastic Management: An Analytical Study towards Achieving SDGs","IEEE ICCSAI 2023","Isha Pandey, Sandhya Kumari, "+V,"10.1109/ICCSAI59793.2023.10421531","c",0],
-[2022,"Lung Cancer Detection Using Scan Images","IEEE ICAC3N 2022","Kartik Kumar, Shivank Srivastava, "+V,"10.1109/ICAC3N56670.2022.10074331","c",1],
-[2022,"Comparative Analysis of Workflow Management System using Agents and Multi-agents in Colored Petri Nets","IEEE ICDCECE 2022",V+", Kuldeep Singh Kaswan, Chinar Bawa","10.1109/ICDCECE53908.2022.9792729","c",0],
-[2022,"Case Study on Online Fraud Detection using Machine Learning","IEEE ICACITE 2022","Ayushi Pandey, Harsh Jaiswal, "+V+", Tushar Mehrotra","10.1109/ICACITE53722.2022.9823538","c",0],
-[2022,"An Instructional Approach to Power System Operations Utilizing Load Flow Simulations","IEEE INCOFT 2022","Upasana Rani, "+V,"10.1109/INCOFT55651.2022.10094416","c",0],
-[2021,"Research Problems in Recommender Systems","Journal of Physics: Conference Series, 1717, 012002","Nitin Mishra, Saumya Chaturvedi, "+V+", Sunita Tripathi","10.1088/1742-6596/1717/1/012002","c",0],
-[2015,"A Review on Agent Oriented Software Engineering","Int. J. Advanced Research in Computer and Communication Engineering",V+" et al.","10.17148/IJARCCE.2015.4495","j",0],
-[2015,"A Review on Genetic Algorithm to Deal with Optimization of Parameters of Constructive Cost Model","Int. J. Advanced Research in Computer and Communication Engineering",V+" et al.","10.17148/IJARCCE.2015.4491","j",0],
-[2015,"Metrics for Project Estimation in Software Engineering: A Review","International Multi Track Conference (IMTC), 187–190",V+" et al.","","c",0],
-[2015,"A Study on Tools Used to Implement Agent Oriented Software Engineering","Int. J. Innovative Research in Computer and Communication Engineering, 150–155",V+" et al.","","j",0],
-[2014,"A Review of Handoff and Location Management in Ad-Hoc Networks","ICCCS 2014",V+", Jyooteesh Malhotra","","c",0]
-];
-const list = document.getElementById("pubs");
-const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-function render(f) {
-  list.innerHTML = P.filter(p => f === "all" || (f === "lung" ? p[6] : p[5] === f)).map(p =>
-    `<li><span class="y">${p[0]}</span><div><div class="t">${esc(p[1])}</div>` +
-    `<div class="a">${esc(p[3]).replace(V, "<strong>" + V + "</strong>")}</div>` +
-    `<div class="v">${esc(p[2])}${p[4] ? ` · <a class="d" href="https://doi.org/${p[4]}" target="_blank" rel="noopener">DOI ${p[4]}</a>` : ""}</div></div></li>`
-  ).join("");
+:root{--ink:#14213d;--teal:#0f766e;--teal-d:#0b5a54;--paper:#f7f8fb;--white:#fff;--text:#2b3550;--muted:#5d6882;--line:#dde2ec;--serif:'Newsreader',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font:17px/1.7 var(--sans);color:var(--text);background:var(--white)}
+a{color:var(--teal-d);text-underline-offset:3px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.2;font-weight:600}
+h1{font-size:clamp(2.3rem,5vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,3vw,2.3rem);margin-bottom:22px}
+h3{font-size:1.2rem;margin:0 0 8px}
+p+p{margin-top:14px}
+.wrap{width:min(1080px,90%);margin-inline:auto}
+.narrow{max-width:760px}
+.sec{padding:80px 0}
+.alt{background:var(--paper);border-block:1px solid var(--line)}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:10px;top:10px;background:var(--white);padding:8px 14px;z-index:99}
+.meta,.sub{color:var(--muted);font-size:.93rem}
+.sub{margin:-10px 0 22px}
+
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top nav{display:flex;justify-content:space-between;align-items:center;min-height:66px}
+.brand{font:600 1.35rem var(--serif);color:var(--ink);text-decoration:none}
+.top ul{display:flex;gap:26px;list-style:none}
+.top ul a{text-decoration:none;color:var(--text);font-size:.95rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
+.top ul a:hover,.top ul a.active{color:var(--teal-d);border-color:var(--teal)}
+.menu{display:none;font:inherit;background:none;border:1px solid var(--line);border-radius:8px;padding:6px 14px;color:var(--ink);cursor:pointer}
+
+.hero{background:var(--ink);color:#d6dcea;padding:70px 0 0}
+.hero h1{color:var(--white);max-width:16ch}
+.hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:60px;align-items:center}
+.role{color:#8fd3cb;font-weight:500;margin-bottom:14px}
+.lead{font-size:1.15rem;max-width:52ch;margin:20px 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;background:var(--teal);color:var(--white);font-weight:700;text-decoration:none;border:2px solid var(--teal)}
+.btn:hover{background:var(--teal-d);border-color:var(--teal-d);color:var(--white)}
+.btn.ghost{background:none;border-color:#6b7894;color:var(--white)}
+.btn.ghost:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+.portrait{position:relative;width:min(320px,80%);aspect-ratio:1;margin:auto;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,.12)}
+.portrait img,.ct{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ct{background:radial-gradient(circle at 38% 42%,#d9eeea 0 7%,transparent 8%),radial-gradient(circle at 62% 48%,#b8d9d4 0 9%,transparent 10%),radial-gradient(ellipse 36% 44% at 36% 50%,#355a66 0 60%,transparent 62%),radial-gradient(ellipse 36% 44% at 64% 50%,#355a66 0 60%,transparent 62%),radial-gradient(circle,#1e3a52 0 48%,#0c1a2e 70%)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:60px;border-top:1px solid #2e3d61;padding:26px 0 34px}
+.facts b{display:block;font:600 2rem var(--serif);color:var(--white)}
+.facts span{font-size:.9rem}
+
+.rows article{padding:24px 0 24px 22px;border-left:3px solid var(--teal);margin-bottom:18px}
+.rows article p{max-width:75ch}
+.rows .meta{margin-top:8px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tags span{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:4px 14px;font-size:.88rem}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{font:inherit;font-size:.92rem;padding:6px 16px;border-radius:20px;border:1px solid var(--line);background:var(--white);color:var(--text);cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pubs{list-style:none;border-top:1px solid var(--line)}
+.pubs li{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.pubs .y{font:600 1.1rem var(--serif);color:var(--teal-d)}
+.pubs .t{font-weight:700;color:var(--ink);line-height:1.4}
+.pubs .a,.pubs .v{font-size:.93rem;color:var(--muted)}
+.pubs .a strong{color:var(--text)}
+.pubs .d{font-size:.88rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px}
+#teaching .two,#background .two{margin-top:0}
+.two h3:not(:first-child){margin-top:26px}
+.plain{list-style:none}
+.plain li{padding:5px 0 5px 16px;position:relative}
+.plain li::before{content:"";position:absolute;left:0;top:.95em;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.time{list-style:none;border-left:2px solid var(--line);padding-left:18px}
+.time li{margin-bottom:14px;line-height:1.5}
+.time em{display:block;color:var(--muted);font-size:.9rem;font-style:normal}
+.contact{margin:16px 0 22px}
+.links{display:flex;flex-wrap:wrap;gap:8px 24px}
+footer{padding:30px 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media(max-width:820px){
+ .hero-grid,.two{grid-template-columns:1fr;gap:34px}
+ .portrait{order:-1;width:200px}
+ .facts{grid-template-columns:1fr 1fr}
+ .menu{display:block}
+ .top ul{display:none;position:absolute;top:66px;left:0;right:0;background:var(--white);flex-direction:column;gap:0;padding:8px 5%;border-bottom:1px solid var(--line)}
+ .top ul.open{display:flex}
+ .top ul a{display:block;padding:12px 0}
+ .sec{padding:56px 0}
 }
-render("all");
-document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".filters button").forEach(x => x.classList.toggle("on", x === b));
-  render(b.dataset.f);
-}));
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-// Mobile menu
-const menu = document.querySelector(".menu"), links = document.getElementById("links");
-menu.addEventListener("click", () => menu.setAttribute("aria-expanded", links.classList.toggle("open")));
-links.addEventListener("click", e => { if (e.target.tagName === "A") { links.classList.remove("open"); menu.setAttribute("aria-expanded", "false"); } });
+.philosophy{margin-top:56px;padding-top:40px;border-top:1px solid var(--line);max-width:820px}
+.philosophy blockquote{font:500 clamp(1.4rem,3vw,1.9rem)/1.35 var(--serif);color:var(--teal-d);margin:6px 0 18px;padding-left:20px;border-left:3px solid var(--teal)}
+.philosophy details{margin-top:14px}
+.philosophy summary{cursor:pointer;color:var(--teal-d);font-weight:700;padding:4px 0}
+.philosophy details p{margin-top:14px}
 
-// Highlight current section in nav
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) links.querySelectorAll("a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
-}), { rootMargin: "-40% 0px -55% 0px" });
-document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Scroll buttons
-const up = document.getElementById("up"), down = document.getElementById("down");
-function toggleScroll() {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  up.hidden = scrollY < 400;
-  down.hidden = scrollY > max - 300;
+.statement{font-size:1.1rem;max-width:72ch;margin:-6px 0 26px}
+.flow{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:14px 0 30px}
+.flow li{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:8px;padding:12px;font-size:.85rem;line-height:1.4;position:relative}
+.flow b{display:block;color:var(--ink);font-size:.95rem;margin-bottom:4px}
+.flow li:not(:last-child)::after{content:"\2192";position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--teal-d);font-weight:700;background:var(--paper);z-index:1;line-height:1}
+.collab{margin-top:32px;padding:18px 22px;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px}
+.collab b{display:block;color:var(--ink);font-family:var(--serif);font-size:1.15rem}
+.scroll{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;z-index:60}
+.scroll button{width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--white);font-size:.95rem;cursor:pointer;box-shadow:0 2px 10px rgba(20,33,61,.3)}
+.scroll button:hover{background:var(--teal)}
+.scroll button[hidden]{display:none}
+@media(max-width:820px){
+ .flow{grid-template-columns:1fr;gap:20px}
+ .flow li:not(:last-child)::after{content:"\2193";right:50%;top:auto;bottom:-17px;transform:translateX(50%)}
 }
-addEventListener("scroll", toggleScroll, { passive: true });
-addEventListener("resize", toggleScroll);
-toggleScroll();
-up.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
-down.addEventListener("click", () => scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" }));
+
+.slider{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin}
+.track figure{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}
+.track img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;display:block;background:var(--line)}
+.track figcaption{font-size:.9rem;color:var(--muted);padding-top:8px}
+.sbtns{display:flex;gap:10px;margin-top:14px}
+.sbtns button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--ink);font-size:1.1rem;cursor:pointer}
+.sbtns button:hover{background:var(--ink);color:var(--white)}
+@media(max-width:820px){.track figure{flex-basis:82%}}
+@media(prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
