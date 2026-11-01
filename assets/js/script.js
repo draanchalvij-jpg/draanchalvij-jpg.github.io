@@ -55,3 +55,16 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Scroll buttons
+const up = document.getElementById("up"), down = document.getElementById("down");
+function toggleScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  up.hidden = scrollY < 400;
+  down.hidden = scrollY > max - 300;
+}
+addEventListener("scroll", toggleScroll, { passive: true });
+addEventListener("resize", toggleScroll);
+toggleScroll();
+up.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+down.addEventListener("click", () => scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" }));
