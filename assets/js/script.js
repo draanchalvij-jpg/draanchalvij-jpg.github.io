@@ -28,10 +28,11 @@ const P = [
 [2015,"A Study on Tools Used to Implement Agent Oriented Software Engineering","Int. J. Innovative Research in Computer and Communication Engineering, 150–155",V+" et al.","","j",0],
 [2014,"A Review of Handoff and Location Management in Ad-Hoc Networks","ICCCS 2014",V+", Jyooteesh Malhotra","","c",2]
 ];
-const list = document.getElementById("pubs");
+const list = document.getElementById("pubs"), note = document.getElementById("authorNote");
+let author = null;
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 function render(f) {
-  list.innerHTML = P.filter(p => f === "all" || (f === "lung" ? p[6] === 1 : f === "net" ? p[6] === 2 : p[5] === f)).map(p =>
+  list.innerHTML = P.filter(p => author ? p[3].includes(author) : (f === "all" || (f === "lung" ? p[6] === 1 : f === "net" ? p[6] === 2 : p[5] === f))).map(p =>
     `<li><span class="y">${p[0]}</span><div><div class="t">${esc(p[1])}</div>` +
     `<div class="a">${esc(p[3]).replace(V, "<strong>" + V + "</strong>")}</div>` +
     `<div class="v">${esc(p[2])}${p[4] ? ` · <a class="d" href="https://doi.org/${p[4]}" target="_blank" rel="noopener">DOI ${p[4]}</a>` : ""}</div></div></li>`
@@ -40,8 +41,41 @@ function render(f) {
 render("all");
 document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".filters button").forEach(x => x.classList.toggle("on", x === b));
+  author = null; note.hidden = true;
   render(b.dataset.f);
 }));
+
+// Collaborators: built from the author lists above
+const AFFIL = {}; // optional, e.g. {"Anand Nayyar": "University, Country"}
+const TOPIC = { 1: "Healthcare AI", 2: "Networks & systems", 0: "Applied computing" };
+const co = {};
+P.forEach(p => p[3].split(", ").forEach(n => {
+  n = n.trim();
+  if (!n || n === V || n.endsWith("et al.")) return;
+  (co[n] = co[n] || []).push(p);
+}));
+const names = Object.keys(co).sort((a, b) => co[b].length - co[a].length || a.localeCompare(b));
+document.getElementById("collabs").innerHTML = names.filter(n => co[n].length > 1).map(n => {
+  const ps = co[n], yrs = ps.map(p => p[0]), topics = [...new Set(ps.map(p => TOPIC[p[6]]))];
+  return `<article class="cc"><b class="num">${ps.length}</b><div><h3>${n}</h3>` +
+    (AFFIL[n] ? `<p class="meta">${AFFIL[n]}</p>` : "") +
+    `<p class="meta">${ps.length} joint papers, ${Math.min(...yrs)}–${Math.max(...yrs)}<br>${topics.join(" · ")}</p>` +
+    `<button class="linkbtn" data-a="${n}">View joint papers</button></div></article>`;
+}).join("");
+document.getElementById("allco").innerHTML = names.filter(n => co[n].length === 1).map(n => `<button class="chipbtn" data-a="${n}">${n}</button>`).join("");
+function showAuthor(n) {
+  author = n;
+  document.querySelectorAll(".filters button").forEach(x => x.classList.remove("on"));
+  render("all");
+  note.hidden = false;
+  note.innerHTML = `Showing ${list.children.length} paper${list.children.length > 1 ? "s" : ""} with ${n}. <button class="linkbtn" id="clearAuthor">Show all</button>`;
+  document.getElementById("publications").scrollIntoView({ behavior: "smooth" });
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-a]");
+  if (a) showAuthor(a.dataset.a);
+  if (e.target.id === "clearAuthor") { author = null; note.hidden = true; document.querySelector('.filters button[data-f="all"]').click(); }
+});
 
 // Mobile menu
 const menu = document.querySelector(".menu"), links = document.getElementById("links");
