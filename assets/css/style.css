@@ -158,28 +158,23 @@ footer{padding:30px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
   transform: translateY(-2px);
 }
 
-/* Give the main navigation more balanced spacing */
-.top ul {
-  gap: 30px;
-}
+/* Navigation spacing: seven links plus profile icons */
+@media (min-width: 821px) { .top ul { gap: 22px; } }
+@media (min-width: 821px) and (max-width: 1000px) { .top ul { gap: 16px; } .brand { font-size: 1.45rem; } }
+@media (max-width: 1199px) { .social-links { display: none; } }
+@media (min-width: 1200px) { .brand { font-size: 1.6rem; } .social-links { margin-left: 24px; padding-left: 20px; gap: 12px; } }
 
-@media (max-width: 1000px) {
-  .top ul {
-    gap: 20px;
-  }
+/* Collaborators */
+.collabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin:6px 0 24px}
+.cc{display:flex;gap:18px;align-items:flex-start;padding:22px;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:10px}
+.cc .num{font:600 3rem/1 var(--serif);color:var(--teal-d);min-width:1.1em}
+.cc h3{margin-bottom:4px}
+.linkbtn{font:inherit;font-weight:700;color:var(--teal-d);background:none;border:0;padding:6px 0 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.linkbtn:hover{color:var(--ink)}
+.allco{margin:0 0 18px}
+.allco summary{cursor:pointer;color:var(--teal-d);font-weight:700}
+.chipbtn{font:inherit;font-size:.88rem;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:4px 14px;color:var(--text);cursor:pointer}
+.chipbtn:hover{border-color:var(--teal);color:var(--teal-d)}
+#authorNote{margin:0 0 14px}
 
-  .social-links {
-    margin-left: 20px;
-    padding-left: 20px;
-    gap: 12px;
-  }
-}
-
-@media (max-width: 820px) {
-  .social-links {
-    margin-left: 0;
-    padding-left: 0;
-    border-left: none;
-    gap: 10px;
-  }
-}
+.where{margin-top:20px;font-size:.95rem;color:#b7c2dd}
