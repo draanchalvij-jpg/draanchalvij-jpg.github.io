@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,12 @@
 <meta name="description" content="Aanchal Vij, Assistant Professor of Computer Science and Engineering at IILM University. Research in artificial intelligence, machine learning, medical imaging, IoT and computer networks.">
 <link rel="canonical" href="https://aanchalvij.com/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_IN">
+<meta name="geo.region" content="IN-UP">
+<meta name="geo.placename" content="Greater Noida, Uttar Pradesh, India">
+<link rel="alternate" hreflang="en" href="https://aanchalvij.com/">
+<link rel="alternate" hreflang="x-default" href="https://aanchalvij.com/">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Aanchal Vij | Assistant Professor, AI and Networked Systems">
 <meta property="og:description" content="Researcher and educator in computer science: AI, machine learning, medical imaging, IoT and networks.">
 <meta property="og:url" content="https://aanchalvij.com/">
@@ -22,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Aanchal Vij","jobTitle":"Assistant Professor, Computer Science and Engineering","worksFor":{"@type":"CollegeOrUniversity","name":"IILM University"},"url":"https://aanchalvij.com","email":"aanchal.vij@iilm.edu","sameAs":["https://orcid.org/0000-0002-7940-0650","https://scholar.google.com/citations?user=YZU5OkcAAAAJ","https://researchid.co/aanchal_vij","https://www.linkedin.com/in/aanchal-vij-b98154b6/","https://www.scopus.com/authid/detail.uri?authorId=57221954706"],"knowsAbout":["Artificial Intelligence","Machine Learning","Deep Learning","Medical Image Processing","Computer Networks","Internet of Things"]}
+{"@context":"https://schema.org","@type":"Person","name":"Aanchal Vij","jobTitle":"Assistant Professor, Computer Science and Engineering","worksFor":{"@type":"CollegeOrUniversity","name":"IILM University","department":{"@type":"Organization","name":"School of Computer Science and Engineering"},"address":{"@type":"PostalAddress","streetAddress":"Plot No. 16-18, Knowledge Park II","addressLocality":"Greater Noida","addressRegion":"Uttar Pradesh","postalCode":"201306","addressCountry":"IN"}},"knowsLanguage":["en","hi"],"url":"https://aanchalvij.com","email":"aanchal.vij@iilm.edu","sameAs":["https://orcid.org/0000-0002-7940-0650","https://scholar.google.com/citations?user=YZU5OkcAAAAJ","https://researchid.co/aanchal_vij","https://www.linkedin.com/in/aanchal-vij-b98154b6/","https://www.scopus.com/authid/detail.uri?authorId=57221954706"],"knowsAbout":["Artificial Intelligence","Machine Learning","Deep Learning","Medical Image Processing","Computer Networks","Internet of Things"]}
 </script>
  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6QCNTDSXL"></script>
@@ -44,6 +50,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
+      <li><a href="#collaborators">Collaborators</a></li>
       <li><a href="#teaching">Teaching</a></li>
       <li><a href="#background">Background</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -95,13 +102,14 @@
   <div class="wrap hero-grid">
     <div>
       <h1 class="name">Aanchal Vij</h1>
-      <p class="role">Assistant Professor, Computer Science &amp; Engineering, IILM University</p>
+      <p class="role">Assistant Professor, School of Computer Science &amp; Engineering, IILM University, Greater Noida, India</p>
       <p class="tagline">Intelligent systems with AI, from healthcare imaging to networks</p>
       <p class="lead">I teach and research computer science, with work spanning machine learning, medical imaging, IoT and communication networks. I am always learning, and open to new domains and collaborations.</p>
       <div class="actions">
         <a class="btn" href="#publications">Read my publications</a>
-        <a class="btn ghost" href="assets/documents/Aanchal_Vij_CV(2).pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn ghost" href="assets/documents/Aanchal_Vij_CV.pdf" target="_blank" rel="noopener">Download CV</a>
       </div>
+      <p class="where">Based in Greater Noida, Uttar Pradesh, India (IST, UTC+5:30). Open to collaboration worldwide.</p>
     </div>
     <figure class="portrait">
       <div class="ct" aria-hidden="true"></div>
@@ -118,7 +126,7 @@
 
 <section id="about" class="wrap sec narrow">
   <h2>About</h2>
-  <p>I am an Assistant Professor in the Department of Computer Science and Engineering at IILM University, Greater Noida, with over ten years of teaching and academic experience across programming, operating systems, computer architecture, data mining and artificial intelligence.</p>
+  <p>I am an Assistant Professor in the School of Computer Science and Engineering at IILM University, Greater Noida, India, with over ten years of teaching and academic experience across programming, operating systems, computer architecture, data mining and artificial intelligence.</p>
   <p>My research spans machine learning, medical image analysis, IoT and communication systems. My doctoral thesis, <i>A Novel Methodology of Early Lung Cancer Prediction Using Soft Computing</i>, was submitted at Galgotias University in September 2026. I am now expanding into computer networks and connected intelligent systems, and I enjoy learning new domains and working with people from other fields.</p>
 </section>
 
@@ -163,6 +171,7 @@
   <div class="filters" role="group" aria-label="Filter publications">
     <button class="on" data-f="all">All</button><button data-f="net">Networks &amp; systems</button><button data-f="lung">Healthcare AI</button><button data-f="j">Journals</button><button data-f="c">Conferences</button>
   </div>
+  <p id="authorNote" class="sub" hidden></p>
   <ol id="pubs" class="pubs"></ol>
   <div class="two">
     <div>
@@ -182,6 +191,15 @@
       </ul>
     </div>
   </div>
+</section>
+
+<section id="collaborators" class="wrap sec">
+  <h2>Collaborators</h2>
+  <p class="sub">Research is a team effort. These are the co-authors I have published with most. Select a name to see our joint papers.</p>
+  <div class="collabs" id="collabs"></div>
+  <details class="allco"><summary>Other co-authors</summary><p class="tags" id="allco"></p></details>
+  <p class="meta">Counts come from the author lists in my publication list. Papers listed as "et al." are not included.</p>
+  <div class="collab"><b>Collaborate with me</b> I welcome co-authors and partners from any institution or country, across AI, machine learning, networks, IoT and healthcare applications. <a href="#contact">Get in touch</a></div>
 </section>
 
 <section id="teaching" class="alt sec">
@@ -287,7 +305,7 @@
         <figure><img src="assets/images/g4.jpg" alt="Aanchal Vij at the Internal Smart India Hackathon 2025 with a certificate" loading="lazy"></figure>
         <figure><img src="assets/images/g5.jpg" alt="Aanchal Vij with the winning student team" loading="lazy"></figure>
         <figure><img src="assets/images/g6.jpg" alt="Aanchal Vij on campus in a navy saree" loading="lazy"></figure>
-        <figure><img src="assets/images/g7.jpg" alt="Aanchal Vij at her department" loading="lazy"></figure>
+        <figure><img src="assets/images/g7.jpg" alt="Aanchal Vij at her office" loading="lazy"></figure>
         <figure><img src="assets/images/g8.jpg" alt="Aanchal Vij in a discussion session in a library" loading="lazy"></figure>
         <figure><img src="assets/images/g9.jpg" alt="Participants working on laptops at a hackathon" loading="lazy"></figure>
         <figure><img src="assets/images/g10.jpg" alt="Aanchal Vij presenting a slide at an IEEE session" loading="lazy"></figure>
@@ -306,14 +324,15 @@
     <ul class="plain contact">
       <li>Institutional: <a href="mailto:aanchal.vij@iilm.edu">aanchal.vij@iilm.edu</a></li>
       <li>Personal: <a href="mailto:aanchal.vij04@gmail.com">aanchal.vij04@gmail.com</a></li>
-      <li>Department of Computer Science and Engineering, IILM University, Greater Noida, India</li>
+      <li>School of Computer Science and Engineering, IILM University, Plot No. 16-18, Knowledge Park II, Greater Noida, Uttar Pradesh 201306, India (IN)</li>
+      <li>Time zone: IST (UTC+5:30). Languages: English, Hindi</li>
     </ul>
-    <p class="links"><a href="https://scholar.google.com/citations?user=YZU5OkcAAAAJ" target="_blank" rel="noopener">Google Scholar</a><a href="https://orcid.org/0000-0002-7940-0650" target="_blank" rel="noopener">ORCID</a><a href="https://researchid.co/aanchal_vij" target="_blank" rel="noopener">ResearchID</a><a href="https://www.linkedin.com/in/aanchal-vij-b98154b6/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.scopus.com/authid/detail.uri?authorId=57221954706" target="_blank" rel="noopener">Scopus</a><a href="assets/documents/Aanchal_Vij_CV(2).pdf" target="_blank" rel="noopener">Academic CV</a><a href="assets/documents/Aanchal_Vij_Concise_CV.pdf" target="_blank" rel="noopener">Concise CV</a></p>
+    <p class="links"><a href="https://scholar.google.com/citations?user=YZU5OkcAAAAJ" target="_blank" rel="noopener">Google Scholar</a><a href="https://orcid.org/0000-0002-7940-0650" target="_blank" rel="noopener">ORCID</a><a href="https://researchid.co/aanchal_vij" target="_blank" rel="noopener">ResearchID</a><a href="https://www.linkedin.com/in/aanchal-vij-b98154b6/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.scopus.com/authid/detail.uri?authorId=57221954706" target="_blank" rel="noopener">Scopus</a><a href="assets/documents/Aanchal_Vij_CV.pdf" target="_blank" rel="noopener">Academic CV</a><a href="assets/documents/Aanchal_Vij_ConciseCV.pdf" target="_blank" rel="noopener">Concise CV</a></p>
   </div>
 </section>
 </main>
 
-<footer class="wrap">© <span id="year"></span> Aanchal Vij. Department of Computer Science and Engineering, IILM University.</footer>
+<footer class="wrap">© <span id="year"></span> Aanchal Vij. School of Computer Science and Engineering, IILM University, Greater Noida, India.</footer>
 <div class="scroll" aria-label="Page scroll">
   <button id="up" aria-label="Scroll to top" hidden>&#9650;</button>
   <button id="down" aria-label="Scroll to bottom">&#9660;</button>
