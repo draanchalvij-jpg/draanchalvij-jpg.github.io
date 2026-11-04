@@ -1,1 +1,22 @@
-
+---
+layout: default
+---
+<article class="wrap narrow sec post">
+  <p class="meta"><a href="/blog/">&larr; All posts</a></p>
+  <h1>{{ page.title | escape }}</h1>
+  <p class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time> &middot; {{ content | number_of_words | divided_by: 200 | plus: 1 }} min read{% if page.tags.size > 0 %} &middot; {{ page.tags | join: ", " }}{% endif %}</p>
+  <div class="prose">
+{{ content }}
+  </div>
+  <aside class="byline">
+    <b>Aanchal Vij</b><br>
+    Assistant Professor, School of Computer Science and Engineering, IILM University, Greater Noida, India. I write about AI, machine learning, networks and teaching. <a href="/#contact">Get in touch</a> or <a href="/#publications">see my publications</a>.
+  </aside>
+  <nav class="postnav" aria-label="More posts">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title | escape }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} &rarr;</a>{% endif %}
+  </nav>
+</article>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | jsonify }},"datePublished":"{{ page.date | date_to_xmlschema }}","description":{{ page.description | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 | jsonify }},"mainEntityOfPage":{{ page.url | absolute_url | jsonify }},"image":{{ '/assets/images/og-image.jpg' | absolute_url | jsonify }},"author":{"@type":"Person","name":"Aanchal Vij","url":"https://aanchalvij.com"},"inLanguage":"en-IN"}
+</script>
