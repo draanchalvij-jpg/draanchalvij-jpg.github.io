@@ -1,0 +1,21 @@
+title: Aanchal Vij
+description: Academic website and blog of Aanchal Vij, Assistant Professor of Computer Science and Engineering at IILM University, India. AI, machine learning, medical imaging, IoT and networks.
+url: "https://aanchalvij.com"
+baseurl: ""
+lang: en-IN
+timezone: Asia/Kolkata
+markdown: kramdown
+permalink: /blog/:title/
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+author:
+  name: Aanchal Vij
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+exclude:
+  - README.md
