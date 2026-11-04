@@ -122,3 +122,23 @@ document.getElementById("next").addEventListener("click", () => { go(1); play();
 slider.addEventListener("touchend", () => setTimeout(play, 5000), { passive: true });
 document.addEventListener("visibilitychange", () => document.hidden ? stop() : play());
 play();
+
+// Latest blog posts, read from the blog feed (the section stays hidden if there are none)
+(async () => {
+  const box = document.getElementById("latest-posts"), sec = document.getElementById("blog-latest");
+  if (!box || !sec) return;
+  try {
+    const r = await fetch("/feed.xml");
+    if (!r.ok) return;
+    const xml = new DOMParser().parseFromString(await r.text(), "application/xml");
+    const entries = [...xml.querySelectorAll("entry")].slice(0, 3);
+    if (!entries.length) return;
+    box.innerHTML = entries.map(e => {
+      const t = e.querySelector("title").textContent, l = e.querySelector("link").getAttribute("href");
+      const d = new Date(e.querySelector("published").textContent.slice(0, 10) + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+      const sm = e.querySelector("summary"), text = sm ? sm.textContent : "";
+      return `<article class="post-card"><p class="meta">${d}</p><h3><a href="${esc(l)}">${esc(t)}</a></h3><p>${esc(text)}</p></article>`;
+    }).join("");
+    sec.hidden = false;
+  } catch (e) {}
+})();
